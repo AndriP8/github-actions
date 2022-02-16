@@ -1,15 +1,16 @@
-name: test
-   push:
+name: learn-github-actions
+on:
+  push:
     branches: [main]
   pull_request:
     branches: [main]
-  jobs: 
-    check-bats-version: 
-      runs-on: ubuntu-latest
-       steps:
+jobs:
+  check-test-and-install-package:
+    runs-on: ubuntu-latest
+    steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
-          node-version: '14'
-      - run: npm install -g bats
-      - run: bats -v
+          node-version: "14"
+      - run: yarn
+      - run: yarn test
